@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How My Adaptive Reasoning System Works</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .step-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            font-weight: bold;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .step-title {
+            text-align: center;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .content-box {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        .math-problem {
+            background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%);
+            padding: 30px;
+            border-radius: 15px;
+            font-size: 1.3em;
+            text-align: center;
+            margin: 20px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .route-decision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .route-box {
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            opacity: 0.5;
+            transition: all 0.3s;
+        }
+
+        .route-box.selected {
+            opacity: 1;
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .route-cot {
+            background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%);
+        }
+
+        .route-tot {
+            background: linear-gradient(135deg, #FF5722 0%, #FF9800 100%);
+        }
+
+        .reasoning-step {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 5px solid #2196F3;
+            border-radius: 8px;
+            font-size: 1.1em;
+        }
+
+        .final-answer {
+            background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.5em;
+            margin-top: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .arrow {
+            text-align: center;
+            font-size: 3em;
+            margin: 20px 0;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        button {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+
+        .highlight {
+            background: rgba(255, 255, 0, 0.3);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .route-decision {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 How My Adaptive Reasoning System Works</h1>
+
+        <!-- Step 1: Input -->
+        <div class="step-container">
+            <div class="step-number">1</div>
+            <h2 class="step-title">📝 Math Problem Given</h2>
+            
+            <div class="math-problem">
+                "A store has 24 apples. They sell 1/3 of them in the morning and 1/4 of the remaining apples 
+                in the afternoon. How many apples are left?"
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- Step 2: Analysis -->
+        <div class="step-container">
+            <div class="step-number">2</div>
+            <h2 class="step-title">🔍 System Analyzes Problem</h2>
+            
+            <div class="content-box">
+                <strong>My system extracts features:</strong><br><br>
+                ✓ Number of operations: <span class="highlight">2 steps</span> (morning & afternoon)<br>
+                ✓ Math operations: <span class="highlight">fractions, subtraction</span><br>
+                ✓ Problem complexity: <span class="highlight">Medium</span><br>
+                ✓ Keywords detected: "sell", "remaining", "left"
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- Step 3: Router Decision -->
+        <div class="step-container">
+            <div class="step-number">3</div>
+            <h2 class="step-title">🤖 Router Model Decides Strategy</h2>
+            
+            <div class="content-box" style="text-align: center; margin-bottom: 20px;">
+                <strong>Router Model Classification:</strong><br>
+                Problem difficulty: <span class="highlight">EASY</span><br>
+                Confidence: 87%
+            </div>
+
+            <div class="route-decision">
+                <div class="route-box route-cot selected">
+                    <h3>✅ Chain-of-Thought (CoT)</h3>
+                    <p style="margin-top: 10px;">SELECTED</p>
+                    <p style="font-size: 0.9em; margin-top: 5px;">Fast & Efficient</p>
+                </div>
+                <div class="route-box route-tot">
+                    <h3>Tree-of-Thought (ToT)</h3>
+                    <p style="margin-top: 10px;">Not needed</p>
+                    <p style="font-size: 0.9em; margin-top: 5px;">Too expensive for this</p>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <strong>Why CoT?</strong> This problem has clear sequential steps without multiple possible 
+                approaches. CoT is sufficient and much faster.
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- Step 4: Reasoning -->
+        <div class="step-container">
+            <div class="step-number">4</div>
+            <h2 class="step-title">💭 System Generates Reasoning</h2>
+            
+            <div class="content-box">
+                <strong>Chain-of-Thought Reasoning Process:</strong>
+            </div>
+
+            <div class="reasoning-step">
+                <strong>Step 1:</strong> Start with total apples<br>
+                → Total apples = 24
+            </div>
+
+            <div class="reasoning-step">
+                <strong>Step 2:</strong> Calculate morning sales (1/3 of 24)<br>
+                → Morning sales = 24 × 1/3 = 8 apples<br>
+                → Remaining after morning = 24 - 8 = 16 apples
+            </div>
+
+            <div class="reasoning-step">
+                <strong>Step 3:</strong> Calculate afternoon sales (1/4 of remaining 16)<br>
+                → Afternoon sales = 16 × 1/4 = 4 apples<br>
+                → Final remaining = 16 - 4 = 12 apples
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- Step 5: Validation -->
+        <div class="step-container">
+            <div class="step-number">5</div>
+            <h2 class="step-title">✔️ Answer Validation</h2>
+            
+            <div class="content-box">
+                <strong>System checks:</strong><br><br>
+                ✅ Is the answer a valid number? YES (12)<br>
+                ✅ Is the calculation correct? YES (24 - 8 - 4 = 12)<br>
+                ✅ Does it make logical sense? YES (12 < 24)<br>
+                ✅ Are all steps valid? YES
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- Step 6: Output -->
+        <div class="step-container">
+            <div class="step-number">6</div>
+            <h2 class="step-title">🎯 Final Answer</h2>
+            
+            <div class="final-answer">
+                <strong>ANSWER: 12 apples</strong>
+            </div>
+
+            <div class="content-box" style="margin-top: 20px;">
+                <strong>Performance Metrics:</strong><br><br>
+                ⏱️ Time taken: <span class="highlight">1.2 seconds</span><br>
+                🎯 Strategy used: <span class="highlight">CoT (Chain-of-Thought)</span><br>
+                💰 Tokens used: <span class="highlight">85 tokens</span><br>
+                ✅ Answer validated: <span class="highlight">YES</span>
+            </div>
+
+            <div class="content-box" style="margin-top: 15px; background: rgba(76, 175, 80, 0.2);">
+                <strong>💡 Why this is efficient:</strong><br>
+                If we used ToT (Tree-of-Thought) for this simple problem, it would take ~4.5 seconds 
+                and use ~320 tokens — unnecessary for such a straightforward calculation!
+            </div>
+        </div>
+
+        <button onclick="showHardExample()">See a Hard Problem Example →</button>
+
+        <!-- Hard Example (Hidden Initially) -->
+        <div id="hardExample" style="display: none;">
+            <div style="text-align: center; margin: 40px 0; font-size: 2em;">
+                🔄 Now with a HARD Problem
+            </div>
+
+            <div class="step-container">
+                <div class="step-number">1</div>
+                <h2 class="step-title">📝 Complex Math Problem</h2>
+                
+                <div class="math-problem">
+                    "A company's profit in January was $10,000. Each month, profit increases by 15% but they spend 
+                    $1,200 on expenses. If they save 60% of net profit each month, how much total savings will 
+                    they have after 6 months?"
+                </div>
+            </div>
+
+            <div class="arrow">↓</div>
+
+            <div class="step-container">
+                <div class="step-number">2</div>
+                <h2 class="step-title">🔍 System Analyzes Problem</h2>
+                
+                <div class="content-box">
+                    <strong>Feature extraction:</strong><br><br>
+                    ⚠️ Number of operations: <span class="highlight">Multiple (6 months iteration)</span><br>
+                    ⚠️ Math operations: <span class="highlight">percentage, compound, iteration</span><br>
+                    ⚠️ Problem complexity: <span class="highlight">HIGH</span><br>
+                    ⚠️ Multiple calculation paths possible
+                </div>
+            </div>
+
+            <div class="arrow">↓</div>
+
+            <div class="step-container">
+                <div class="step-number">3</div>
+                <h2 class="step-title">🤖 Router Model Decides</h2>
+                
+                <div class="content-box" style="text-align: center; margin-bottom: 20px;">
+                    <strong>Router Model Classification:</strong><br>
+                    Problem difficulty: <span class="highlight">HARD</span><br>
+                    Confidence: 92%
+                </div>
+
+                <div class="route-decision">
+                    <div class="route-box route-cot">
+                        <h3>Chain-of-Thought (CoT)</h3>
+                        <p style="margin-top: 10px;">Too risky</p>
+                        <p style="font-size: 0.9em; margin-top: 5px;">May make errors</p>
+                    </div>
+                    <div class="route-box route-tot selected">
+                        <h3>✅ Tree-of-Thought (ToT)</h3>
+                        <p style="margin-top: 10px;">SELECTED</p>
+                        <p style="font-size: 0.9em; margin-top: 5px;">Higher accuracy needed</p>
+                    </div>
+                </div>
+
+                <div class="content-box">
+                    <strong>Why ToT?</strong> This problem requires iterative calculations with multiple steps. 
+                    ToT explores different calculation approaches to ensure accuracy.
+                </div>
+            </div>
+
+            <div class="arrow">↓</div>
+
+            <div class="step-container">
+                <div class="step-number">4</div>
+                <h2 class="step-title">🌳 Tree-of-Thought Reasoning</h2>
+                
+                <div class="content-box">
+                    <strong>System explores multiple reasoning paths:</strong>
+                </div>
+
+                <div class="reasoning-step" style="border-left-color: #f44336;">
+                    <strong>Branch 1:</strong> Calculate month by month<br>
+                    → Month 1: $10,000 × 1.15 - $1,200 = $10,300, Save: $6,180<br>
+                    → Month 2: $10,300 × 1.15 - $1,200 = $10,645, Save: $6,387<br>
+                    → (Continue for 6 months...)<br>
+                    <span style="opacity: 0.7;">⚠️ Checking for calculation errors...</span>
+                </div>
+
+                <div class="reasoning-step" style="border-left-color: #4CAF50;">
+                    <strong>Branch 2:</strong> Formula-based approach<br>
+                    → Use compound growth formula<br>
+                    → Net profit each month = (Previous × 1.15) - 1200<br>
+                    → Savings = Net profit × 0.6<br>
+                    → Sum all 6 months = $39,847<br>
+                    <span style="color: #4CAF50;">✅ Most accurate path!</span>
+                </div>
+
+                <div class="reasoning-step" style="border-left-color: #FF9800;">
+                    <strong>Branch 3:</strong> Alternative calculation<br>
+                    → Different approach to compound interest<br>
+                    → Result: $39,850<br>
+                    <span style="opacity: 0.7;">⚠️ Small rounding difference</span>
+                </div>
+            </div>
+
+            <div class="arrow">↓</div>
+
+            <div class="step-container">
+                <div class="step-number">5</div>
+                <h2 class="step-title">🎯 Best Path Selected</h2>
+                
+                <div class="final-answer">
+                    <strong>ANSWER: $39,847</strong>
+                </div>
+
+                <div class="content-box" style="margin-top: 20px;">
+                    <strong>Performance Metrics:</strong><br><br>
+                    ⏱️ Time taken: <span class="highlight">4.8 seconds</span><br>
+                    🎯 Strategy used: <span class="highlight">ToT (Tree-of-Thought)</span><br>
+                    💰 Tokens used: <span class="highlight">340 tokens</span><br>
+                    🌳 Paths explored: <span class="highlight">3 branches</span><br>
+                    ✅ Best path: <span class="highlight">Branch 2 (formula-based)</span>
+                </div>
+
+                <div class="content-box" style="margin-top: 15px; background: rgba(255, 152, 0, 0.2);">
+                    <strong>💡 Why ToT was necessary:</strong><br>
+                    For complex problems like this, CoT might make calculation errors. ToT explores multiple 
+                    approaches and validates results, ensuring accuracy even though it takes longer.
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 50px 0;">
+            <div style="background: rgba(255, 255, 255, 0.1); padding: 30px; border-radius: 15px;">
+                <h2 style="margin-bottom: 20px;">📊 Summary: How My System Works</h2>
+                <p style="font-size: 1.2em; line-height: 2;">
+                    <strong>Easy Problem:</strong> Router → CoT → Fast answer (1-2 sec)<br>
+                    <strong>Hard Problem:</strong> Router → ToT → Accurate answer (4-5 sec)<br><br>
+                    <span class="highlight">Result: Best balance of speed and accuracy! 🎯</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showHardExample() {
+            document.getElementById('hardExample').style.display = 'block';
+            document.querySelector('button').style.display = 'none';
+            document.getElementById('hardExample').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    </script>
+</body>
+</html>
