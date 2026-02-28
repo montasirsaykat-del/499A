@@ -1,0 +1,26 @@
+problem,solution,level,type
+What is $2^3 + 3^2$?,17,Level 1,Algebra
+Simplify $\frac{12}{18}$.,\frac{2}{3},Level 1,Algebra
+What is the perimeter of a rectangle with length 5 and width 3?,16,Level 1,Geometry
+Evaluate $|{-7}|$.,7,Level 1,Algebra
+What is 15% of 200?,30,Level 1,Arithmetic
+Solve for x: $2x + 5 = 13$.,4,Level 2,Algebra
+Find the area of a circle with radius 7. Use $\pi \approx 3.14$.,153.86,Level 2,Geometry
+"If $f(x) = 3x^2 - 2x + 1$, find $f(2)$.",9,Level 2,Algebra
+"What is the slope of the line through (1,2) and (3,8)?",3,Level 2,Geometry
+Expand $(x+3)^2$.,x^2 + 6x + 9,Level 2,Algebra
+Solve $x^2 - 5x + 6 = 0$.,x = 2 or x = 3,Level 3,Algebra
+"Find the sum of the first 10 terms of the arithmetic sequence 2, 5, 8, ...",155,Level 3,Sequences
+"If $\log_2(x) = 5$, find $x$.",32,Level 3,Algebra
+Find the derivative of $f(x) = 3x^3 - 2x^2 + x$.,9x^2 - 4x + 1,Level 3,Calculus
+How many ways can 5 people sit in a row?,120,Level 3,Combinatorics
+Find all real solutions to $x^4 - 5x^2 + 4 = 0$.,"x = ±1, ±2",Level 4,Algebra
+Evaluate $\int_0^1 x^2 e^x dx$.,e - 2,Level 4,Calculus
+In how many ways can you choose 3 items from 10 if order matters?,720,Level 4,Combinatorics
+"Find the eigenvalues of the matrix [[2,1],[1,2]].","λ = 1, 3",Level 4,Linear Algebra
+Prove that $\sqrt{2}$ is irrational.,Proof by contradiction,Level 4,Number Theory
+Find the number of positive integers less than 1000 that are divisible by neither 3 nor 7.,571,Level 5,Number Theory
+A merchant buys goods worth $6000 and sells 1/3 at 10% loss. At what price must he sell the remainder to gain 10% overall?,6800,Level 5,Word Problem
+"If $z = 3 + 4i$, find $|z|^2 + \arg(z)$.",25 + arctan(4/3),Level 5,Complex Numbers
+"Solve the system: $x+y+z=6$, $2x-y+z=3$, $x+2y-z=2$.","x=1, y=2, z=3",Level 5,Linear Algebra
+Find the sum $\sum_{k=1}^{\infty} \frac{1}{k(k+1)}$.,1,Level 5,Series
