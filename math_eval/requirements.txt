@@ -1,0 +1,16 @@
+# Core ML / inference
+torch>=2.0.0
+transformers>=4.38.0
+accelerate>=0.27.0
+bitsandbytes>=0.42.0      # 4-bit quantization (requires CUDA)
+
+# Data handling
+pandas>=2.0.0
+openpyxl>=3.1.0           # for reading .xlsx files
+
+# Report generation
+fpdf2>=2.7.0              # PDF reports (lightweight, no Java dependency)
+matplotlib>=3.7.0         # for evaluation graphs
+
+# Progress / UX
+tqdm>=4.66.0
