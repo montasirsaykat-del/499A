@@ -1,0 +1,15 @@
+# Virtual environment
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Runtime results (generated at runtime, not committed)
+results/checkpoint.json
+results/evaluation_report.csv
+results/detailed_results.csv
+results/evaluation_report.html
+results/evaluation_report.pdf
+results/evaluation_graphs.png
